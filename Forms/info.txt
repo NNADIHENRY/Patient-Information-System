@@ -1,0 +1,338 @@
+Private Sub cmdAddAnimalbite_Click()
+AddNewAnimalbiteRecord Me.txtLastName, Me.txtFirstName, Me.txtMiddleName, Me.txtAddress, Me.txtBarangay, Me.txtHeight, Me.txtWeight, Me.txtbml, cbomonth & "/" & cboDate & "/" & cboYear, cboGender, cboStatus, txtnature, txtsite, txtcondition, txtvaccination, txttreatment, txtphysician
+ClearAnimalbiteRecords
+End Sub
+
+Private Sub cmdAddDressing_Click()
+AddNewDressingRecord Me.txtDressingLN, Me.txtDressingFN, Me.txtDressingMN, Me.txtDressingAddress, cboDressingGen, cboDressingStat, cboDressingMonth & "/" & cboDressingDate & "/" & cboDressingYear, Me.txtDressingAge, cboDressingTypesofWounds
+ClearImmunizationRecords
+End Sub
+
+Private Sub cmdClearConsultation_Click()
+ClearConsultationRecords
+End Sub
+
+Private Sub cmdCloseConsultationRecords_Click()
+frConsultationRecords.Visible = False
+End Sub
+
+Private Sub cmdCloserecordsAnimalbite_Click()
+franimalbiteframe.Visible = False
+End Sub
+
+Private Sub cmdCloserecordsdressing_Click()
+frdressingframe.Visible = False
+End Sub
+
+Private Sub cmdCloserecordsImmunization_Click()
+frimmunizationframe.Visible = False
+
+End Sub
+
+Private Sub cmdEditCn_Click()
+If Text15.Text = "" Then
+    MsgBox "Select first a record to edit", vbCritical
+Else
+    newrec = False
+    CmdSave.Enabled = True
+    cmdEDIT.Enabled = True
+    CmdAdd.Enabled = False
+    SendKeys "{HOME}+{END}"
+    CmdSave.Caption = "&Update"
+End If
+answer = MsgBox("are you sure you want to edit this file", vbYesNo + vbQuestion)
+If answer = vbYes Then
+txtpat = ""
+cmbm = ""
+Else
+Me.Refresh
+End If
+End Sub
+
+Private Sub CmdSave_Click()
+newrec = True
+'adoKulai.Recordset.Fields("Last_Name") = txtconlast.Text
+answer = MsgBox("are you sure you want to save this information?", vbYesNo + vbQuestion)
+If answer = vbYes Then
+adoKulai.recordset.Update
+txtconlast.Text = ""
+Else
+adoKulai.Refresh
+'answer = MsgBox("are you sure you want to save this file", vbYesNo + vbQuestion)
+'If answer = vbYes Then
+'txtpat = ""
+'cmbm = ""
+'Else
+'Me.Refresh
+End If
+End Sub
+
+Private Sub cmdsave1_Click()
+answer = MsgBox("are you sure you want to save this file", vbYesNo + vbQuestion)
+If answer = vbYes Then
+txtpn = ""
+Else
+Me.Refresh
+End If
+End Sub
+
+Private Sub cmdExitAnimalbite_Click()
+answer = MsgBox("Do you want to exit now?", vbExclamation + vbYesNo, "Confirm")
+If answer = vbYes Then
+Form4.Show
+Me.Hide
+Else
+MsgBox "Action canceled", vbInformation, "Confirm"
+End If
+End Sub
+
+Private Sub cmdviewimmunizationrecords_Click()
+frimmunizationframe.Visible = True
+
+End Sub
+
+Private Sub cmdViewrecordsAnimalbite_Click()
+franimalbiteframe.Visible = True
+End Sub
+
+Private Sub cmdAddImmunizationRecord_Click()
+AddNewImmunization txtimmunizationln, tximmunizationfn.Text, tximmunizationmn.Text, cboimmunizationGender.Text, txtimmunizationaddress, (cboimmunizationmonth.Text & " " & cboimmunizationdate.Text & ", " & cboimmunizationyear.Text), txtimmunizationweight, cboimmunizationBloodtype.Text, txtimmunizationfatalheartrate, vaccinetype
+'AddNewImmunizationRecord "", "", "", "", "", "", "", "", ""
+ClearImmunizationRecords
+End Sub
+
+Private Sub cmdimmunizationclear_Click()
+ClearImmunizationRecords
+End Sub
+
+Private Sub Command12_Click()
+newrec = True
+'adoKulai.Recordset.Fields("Last_Name") = Text15.Text
+answer = MsgBox("are you sure you want to save this information?", vbYesNo + vbQuestion)
+If answer = vbYes Then
+adoKulai.recordset.Update
+txtconlast.Text = ""
+Else
+adoKulai.Refresh
+answer = MsgBox("are you sure you want to save this file", vbYesNo + vbQuestion)
+If answer = vbYes Then
+txtpat = ""
+cmbm = ""
+Else
+Me.Refresh
+End If
+End If
+End Sub
+
+Private Sub Command13_Click()
+'adodressing.Recordset.Fields("Last_Name") = Text6.Text
+'adodressing.Recordset.Fields("First_Name") = Text7.Text
+'adodressing.Recordset.Fields("Middle_Name") = Text8.Text
+'adodressing.Recordset.Fields("Last_Name") = txtAddressIm.Text
+answer = MsgBox("are you sure you want to save this information?", vbYesNo + vbQuestion)
+If answer = vbYes Then
+adoKulai.recordset.Update
+txtconlast.Text = ""
+Else
+adoKulai.Refresh
+End If
+
+End Sub
+Private Sub Command4_Click()
+answer = MsgBox("Are you sure to exit dressing registration?", vbExclamation + vbYesNo, "Confirm")
+If answer = vbYes Then
+Form4.Show
+Me.Hide
+Else
+MsgBox "Action canceled", vbInformation, "Confirm"
+
+End If
+End Sub
+
+Private Sub Command5_Click()
+If Text6.Text = "" Then
+    MsgBox "Select first a record to edit", vbCritical
+Else
+    newrec = False
+    CmdSave.Enabled = True
+    cmdEDIT.Enabled = True
+    CmdAdd.Enabled = False
+    SendKeys "{HOME}+{END}"
+    CmdSave.Caption = "&Update"
+End If
+txtName.Text = ""
+txtAddress.Text = ""
+txtAge.Text = ""
+txtSyndrome.Text = ""
+answer = MsgBox("are you sure you want to save this file", vbYesNo + vbQuestion)
+If answer = vbYes Then
+txtpat = ""
+cmbm = ""
+Else
+Me.Refresh
+End If
+End Sub
+
+Private Sub Command6_Click()
+answer = MsgBox("Are you sure to exit consultation registration?", vbExclamation + vbYesNo, "Confirm")
+If answer = vbYes Then
+Form4.Show
+Me.Hide
+Else
+MsgBox "Action canceled", vbInformation, "Confirm"
+End If
+End Sub
+
+Private Sub Command7_Click()
+newrec = True
+CmdSave.Enabled = True
+cmdEDIT.Enabled = True
+CmdAdd.Enabled = False
+adoKulai.recordset.AddNew
+Text6.Text = "" 'Add the entered the characters to the text box
+Text6.Text = "" 'Clearing the text box
+Text6.SetFocus 'Get the focus back to the 'text box
+CmdAdd.Enabled = False ' Disabling the Add button
+answer = MsgBox("Are you sure you want to add this file", vbYesNo + vbQuestion)
+If answer = vbYes Then
+txtName = ""
+Me.Refresh
+End If
+answer = MsgBox("are you sure you want to save this file", vbYesNo + vbQuestion)
+If answer = vbYes Then
+txtpat = ""
+cmbm = ""
+Else
+Me.Refresh
+End If
+End Sub
+
+Private Sub Command8_Click()
+answer = MsgBox("Are you sure to exit immunization registration?", vbExclamation + vbYesNo, "Confirm")
+If answer = vbYes Then
+Form4.Show
+Me.Hide
+Else
+MsgBox "Action canceled", vbInformation, "Confirm"
+
+End If
+End Sub
+
+Private Sub Command9_Click()
+If Text9.Text = "" Then
+    MsgBox "Select first a record to edit", vbCritical
+Else
+    newrec = False
+    CmdSave.Enabled = True
+    cmdEDIT.Enabled = True
+    CmdAdd.Enabled = False
+    SendKeys "{HOME}+{END}"
+    CmdSave.Caption = "&Update"
+End If
+End Sub
+
+
+Private Sub optBCG_Click()
+vaccinetype = "BCG"
+End Sub
+
+Private Sub optDPT_Click()
+vaccinetype = "DPT"
+End Sub
+
+Private Sub OptHEPAB_Click()
+vaccinetype = "HEPA B"
+End Sub
+
+Private Sub optMEASLES_Click()
+vaccinetype = "MEASLES"
+End Sub
+
+Private Sub optPOLIO_Click()
+vaccinetype = "POLIO"
+End Sub
+
+Private Sub Timer1_Timer()
+Dim today As Variant
+today = Now
+Label39.Caption = Format(today, "hh:mm:ss ampm")
+Label9.Caption = Format(today, "mm/dd/yy")
+End Sub
+Private Sub Timer2_Timer()
+Dim today As Variant
+today = Now
+Label41.Caption = Format(today, "hh:mm:ss ampm")
+Label8.Caption = Format(today, "mm/dd/yy")
+End Sub
+
+Private Sub Timer3_Timer()
+Dim today As Variant
+today = Now
+Label37.Caption = Format(today, "hh:mm:ss ampm")
+Label10.Caption = Format(today, "mm/dd/yy")
+End Sub
+
+
+Private Sub ClearImmunizationRecords()
+txtimmunizationln = ""
+tximmunizationfn = ""
+tximmunizationmn = ""
+cboimmunizationmonth = ""
+cboimmunizationdate = ""
+cboimmunizationyear = ""
+txtimmunizationaddress = ""
+cboimmunizationGender = ""
+cboimmunizationBloodtype = ""
+txtimmunizationweight = ""
+txtimmunizationfatalheartrate = ""
+optBCG.Value = False
+optPOLIO.Value = False
+optMEASLES.Value = False
+optDPT.Value = False
+Me.OptHEPAB.Value = False
+End Sub
+
+Private Sub AddNewImmunization(ByVal lname As String, ByVal fname As String, ByVal mname As String, ByVal gender As String, ByVal address As String, ByVal bdate As String, ByVal weight As String, ByVal bloodtype As String, ByVal fatalheartrate As String, ByVal vaccine As String)
+Set recordset2 = New ADODB.recordset
+recordset2.Open "SELECT * FROM patient_immunization_information", databaseconnection, adOpenDynamic, adLockPessimistic
+recordset2.AddNew
+recordset2("immunization_date") = Date
+recordset2("immunization_time") = Time
+recordset2("lastname") = lname
+recordset2("firstname") = fname
+recordset2("middlename") = mname
+recordset2("gender") = gender
+recordset2("address") = address
+recordset2("b_date") = bdate
+recordset2("weight") = weight
+recordset2("bloodtype") = bmi
+recordset2("fatalheartrate") = fatalheartrate
+recordset2("vaccine") = vaccine
+recordset2.Update
+End Sub
+
+
+Private Sub cmdDressingClear_Click()
+ClearDressingRecords
+End Sub
+
+Private Sub cmdExit2_Click()
+answer = MsgBox("Are you sure to exit registration form?", vbExclamation + vbYesNo, "Confirm")
+If answer = vbYes Then
+Form4.Show
+Me.Hide
+Else
+MsgBox "Action canceled", vbInformation, "Confirm"
+End If
+End Sub
+
+Private Sub cmdExitCn_Click()
+answer = MsgBox("Do you want to exit now?", vbExclamation + vbYesNo, "Confirm")
+If answer = vbYes Then
+Form4.Show
+Me.Hide
+Else
+MsgBox "Action canceled", vbInformation, "Confirm"
+End If
+End Sub
+
